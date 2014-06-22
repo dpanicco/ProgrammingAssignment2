@@ -7,7 +7,10 @@
 ## set the value of the matrix inverse
 ## get the value of the matrix inverse
 
+## I have added some controls to verify if the argument of the function is a square matrix
+
 makeCacheMatrix <- function(x = matrix()) {
+
         if(!is.matrix(x)) {
                 stop("argument must be a square matrix")
         }
@@ -17,6 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
         }
         
         m <- NULL
+
         set <- function(y) {
                 x <<- y
                 m <<- NULL
@@ -24,6 +28,7 @@ makeCacheMatrix <- function(x = matrix()) {
         get <- function() x
         setSolve <- function(solve) m <<- solve
         getSolve <- function() m
+
         list(set = set, get = get,
              setSolve = setSolve,
              getSolve = getSolve)
@@ -36,6 +41,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Otherwise, it calculates the inverse of the matrix and sets the value of the inverse matrix in the cache via the setSolve function.
 
 cacheSolve <- function(x, ...) {
+
         ## Return a matrix that is the inverse of 'x'
 
         m <- x$getSolve()
@@ -43,8 +49,10 @@ cacheSolve <- function(x, ...) {
                 message("getting cached inverse matrix")
                 return(m)
         }
+
         data <- x$get()
         m <- solve(data, ...)
         x$setSolve(m)
+
         m
 }
