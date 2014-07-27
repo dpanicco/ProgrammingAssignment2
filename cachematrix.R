@@ -51,7 +51,7 @@ cacheSolve <- function(x, ...) {
                 return(m)
         }
 
-        ## If don't find the inverse do the computation and cache the inverse matrix
+        ## If the inverse don't exist do the computation and cache the inverse matrix
 
         data <- x$get()
         m <- solve(data, ...)
